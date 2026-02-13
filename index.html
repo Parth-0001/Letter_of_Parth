@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Jaan ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    background: linear-gradient(to bottom, #1e1e2f, #2c2c54);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Georgia', serif;
+    overflow: hidden;
+}
+
+/* Envelope */
+.envelope {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    background: #f5deb3;
+    cursor: pointer;
+    transition: transform 0.6s ease;
+}
+
+.envelope:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-bottom: 100px solid #e6c28b;
+    transition: transform 0.6s ease;
+    transform-origin: top;
+}
+
+.envelope.open:before {
+    transform: rotateX(180deg);
+}
+
+/* Letter */
+.letter {
+    position: absolute;
+    width: 260px;
+    height: 160px;
+    background: white;
+    top: 20px;
+    left: 20px;
+    padding: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 1s ease;
+    overflow-y: auto;
+}
+
+.envelope.open .letter {
+    transform: translateY(-120px);
+    opacity: 1;
+}
+
+/* Typewriter text */
+#text {
+    white-space: pre-line;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333;
+}
+</style>
+</head>
+
+<body>
+
+<div class="envelope" onclick="openEnvelope(this)">
+    <div class="letter">
+        <div id="text"></div>
+    </div>
+</div>
+
+<script>
+const message = `My Jaan,
+
+I know we talk about a thousand things every single day, yet somehow the most important ones stay quietly inside my heart… waiting for a moment like this, waiting to be written in a special way.
+
+I don’t know much about writing. But I know this — I have endless things to write about you.
+
+I still remember the first time I saw you.
+That shy-looking girl… wearing that soft shade of green, like a peacock carrying its quiet elegance. You looked so pretty, so unaware of the storm you were about to create in my heart.
+
+And then I discovered your talkative side. And no, it’s not just your voice that’s beautiful — it’s the energy behind it, the emotions inside it, the way you say the simplest things as if they carry a secret meaning. Maybe for someone else, it’s normal. But for me, it feels special. Very special.
+
+From the moment we started talking, it didn’t feel new. It felt like two old friends meeting after years, continuing a conversation that was paused somewhere in another lifetime. Sometimes it still feels unreal.
+
+But then again… everything about you feels unreal.
+
+So clumsy at times.
+So shy on the outside.
+Yet with the most mischievous, devilish thoughts hiding behind that innocent face.
+
+And when you entered my home… it wasn’t just a person walking in.
+
+You changed the temperature.
+You changed the fragrance.
+You changed the entire atmosphere.
+
+You don’t just walk into a room — you transform it.
+You don’t just smile — you rearrange my entire day.
+
+There is something about you that feels like home… like a place my heart had been searching for long before I even knew your name.
+
+I love the way you laugh without holding back.
+I love the way your eyes soften when you truly listen.
+I love how your presence turns ordinary moments into memories I never want to forget.
+
+When I imagine the future, it doesn’t come with loud celebrations or grand dreams. It comes with simple things — rainy drives, late-night talks, comfortable silences, and your hand resting in mine.
+
+If life is a long road, I don’t want shortcuts.
+I just want to walk it beside you.
+
+You are not just someone I love.
+You are someone I choose — every single day.
+
+And if I had to live this life again… in every lifetime, in every universe, in every version of destiny — I would still search for you. I would still choose you.
+
+
+“Shayad likha tha taqdeer mein tera naam kahin,
+Tabhi har mod par tera hi khayal aaya.”
+
+Always yours,
+Parth ❤️`;
+
+let index = 0;
+let isOpened = false;
+
+function openEnvelope(el) {
+    if (isOpened) return;
+    isOpened = true;
+    el.classList.add("open");
+    setTimeout(typeWriter, 1000);
+}
+
+function typeWriter() {
+    if (index < message.length) {
+        document.getElementById("text").innerHTML += message.charAt(index);
+        index++;
+        setTimeout(typeWriter, 40);
+    }
+}
+</script>
+
+</body>
+</html>
