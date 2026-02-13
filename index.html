@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For My Jaan ❤️</title>
+<title>to Janu ❤️</title>
 
 <style>
 body {
     margin: 0;
-    background: linear-gradient(to bottom, #1e1e2f, #2c2c54);
+    background: radial-gradient(circle at center, #2c2c54, #1e1e2f);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,55 +20,92 @@ body {
 /* Envelope */
 .envelope {
     position: relative;
-    width: 300px;
-    height: 200px;
+    width: 320px;
+    height: 220px;
     background: #f5deb3;
     cursor: pointer;
     transition: transform 0.6s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.4);
 }
 
-.envelope:before {
-    content: "";
+/* Top flap */
+.envelope .flap {
     position: absolute;
     top: 0;
     left: 0;
-    border-left: 150px solid transparent;
-    border-right: 150px solid transparent;
-    border-bottom: 100px solid #e6c28b;
-    transition: transform 0.6s ease;
+    width: 100%;
+    height: 50%;
+    background: #e6c28b;
+    clip-path: polygon(0 0, 50% 100%, 100% 0);
     transform-origin: top;
+    transition: transform 0.6s ease;
 }
 
-.envelope.open:before {
+.envelope.open .flap {
     transform: rotateX(180deg);
+}
+
+/* Big Heart */
+.envelope::after {
+    content: "❤️";
+    position: absolute;
+    font-size: 45px;
+    animation: pulse 1.5s infinite;
+}
+
+/* Small Floating Hearts */
+.envelope::before {
+    content: "💕 💗";
+    position: absolute;
+    top: -30px;
+    font-size: 22px;
+    animation: float 2s infinite ease-in-out alternate;
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* Floating Animation */
+@keyframes float {
+    from { transform: translateY(0px); }
+    to { transform: translateY(12px); }
 }
 
 /* Letter */
 .letter {
     position: absolute;
-    width: 260px;
-    height: 160px;
+    width: 280px;
+    height: 180px;
     background: white;
     top: 20px;
     left: 20px;
-    padding: 15px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-    transform: translateY(100px);
+    padding: 18px;
+    box-shadow: 0 15px 25px rgba(0,0,0,0.3);
+    transform: translateY(120px);
     opacity: 0;
     transition: all 1s ease;
     overflow-y: auto;
+    border-radius: 4px;
 }
 
 .envelope.open .letter {
-    transform: translateY(-120px);
+    transform: translateY(-140px);
     opacity: 1;
 }
 
-/* Typewriter text */
+/* Text styling */
 #text {
     white-space: pre-line;
     font-size: 14px;
-    line-height: 1.5;
+    line-height: 1.6;
     color: #333;
 }
 </style>
@@ -77,13 +114,14 @@ body {
 <body>
 
 <div class="envelope" onclick="openEnvelope(this)">
+    <div class="flap"></div>
     <div class="letter">
         <div id="text"></div>
     </div>
 </div>
 
 <script>
-const message = `My Jaan,
+const message = `My Jaan❤️,
 
 I know we talk about a thousand things every single day, yet somehow the most important ones stay quietly inside my heart… waiting for a moment like this, waiting to be written in a special way.
 
@@ -141,14 +179,14 @@ function openEnvelope(el) {
     if (isOpened) return;
     isOpened = true;
     el.classList.add("open");
-    setTimeout(typeWriter, 1000);
+    setTimeout(typeWriter, 1200);
 }
 
 function typeWriter() {
     if (index < message.length) {
         document.getElementById("text").innerHTML += message.charAt(index);
         index++;
-        setTimeout(typeWriter, 40);
+        setTimeout(typeWriter, 90); // Slower romantic typing speed
     }
 }
 </script>
